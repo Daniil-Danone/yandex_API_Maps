@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>650</width>
+    <height>450</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QLabel" name="map">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>781</width>
-      <height>581</height>
+      <x>0</x>
+      <y>0</y>
+      <width>650</width>
+      <height>450</height>
      </rect>
     </property>
     <property name="text">
@@ -35,8 +35,8 @@
      <rect>
       <x>10</x>
       <y>80</y>
-      <width>231</width>
-      <height>491</height>
+      <width>171</width>
+      <height>301</height>
      </rect>
     </property>
     <property name="title">
@@ -111,11 +111,17 @@
    <widget class="QLineEdit" name="search_field">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>20</y>
-      <width>761</width>
-      <height>20</height>
+      <x>10</x>
+      <y>10</y>
+      <width>631</width>
+      <height>25</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-style: outset;
+border-radius: 6px;
+border-width: 1px;
+border-color: rbg(0, 0, 0);</string>
     </property>
     <property name="text">
      <string>ПОЛЕ ПОИСКА</string>
@@ -124,6 +130,9 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <zorder>map</zorder>
+   <zorder>search_field</zorder>
+   <zorder>menuBox</zorder>
   </widget>
  </widget>
  <resources/>
