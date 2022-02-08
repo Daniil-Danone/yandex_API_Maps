@@ -1,6 +1,7 @@
 import sys
 import requests
 from PyQt5 import uic
+from PyQt5.QtCore import QPropertyAnimation, QPoint
 from PyQt5.QtCore import Qt
 from PIL.ImageQt import QImage
 from PyQt5.QtGui import QPixmap
@@ -70,6 +71,13 @@ class ConverterWindow(QMainWindow):
             if self.y < 90.0 or self.x > -90.0:
                 self.y -= 0.01
                 self.image_maps()
+
+    def mousePressEvent(self, event):
+        if event.button() == Qt.LeftButton:
+            self.menuBox.move(10, 50)
+
+        elif event.button() == Qt.RightButton:
+            self.menuBox.move(-250, 50)
 
 
 if __name__ == '__main__':
