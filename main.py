@@ -9,17 +9,25 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 
 class ConverterWindow(QMainWindow):
     def __init__(self):
-        print('OK')
         super(ConverterWindow, self).__init__()
+
         self.setWindowTitle('Карта')
         uic.loadUi('main.ui', self)
-        self.scale = 1.0
+        self.setFixedSize(650, 450)
+
+        self.spn = 0.01
+        self.x = 73.368221
+        self.y = 54.989347
+
+        self.map.setFocus(True)
+
         self.image_maps()
 
     def image_maps(self):
-        map_request = f'https://static-maps.yandex.ru/1.x/?ll=73.368221,54.989347' \
-                      f'&spn=0.05,0.05&size=650,450&l=map&scale={self.scale}'
+        map_request = f'https://static-maps.yandex.ru/1.x/?ll={self.x},{self.y}' \
+                      f'&spn={self.spn},{self.spn}&size=650,450&l=map'
         response = requests.get(map_request)
+        print(self.spn)
 
         if not response:
             print("Ошибка выполнения запроса:")
@@ -30,16 +38,37 @@ class ConverterWindow(QMainWindow):
             image = QImage.fromData(response.content)
             pixmap = QPixmap.fromImage(image)
             self.map.setPixmap(pixmap)
+            response.close()
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_PageUp:
-            if self.scale < 4.0:
-                self.scale += 0.1
+            if self.spn > 0.0001:
+                self.spn = self.spn / 2
                 self.image_maps()
 
         elif event.key() == Qt.Key_PageDown:
-            if self.scale > 1.0:
-                self.scale -= 0.1
+            if self.spn < 90:
+                self.spn = self.spn * 2
+                self.image_maps()
+
+        elif event.key() == Qt.Key_Left:
+            if self.x < 180.0 or self.x > -180.0:
+                self.x -= 0.01
+                self.image_maps()
+
+        elif event.key() == Qt.Key_Right:
+            if self.x < 180.0 or self.x > -180.0:
+                self.x += 0.01
+                self.image_maps()
+
+        elif event.key() == Qt.Key_Up:
+            if self.y < 90.0 or self.x > -90.0:
+                self.y += 0.01
+                self.image_maps()
+
+        elif event.key() == Qt.Key_Down:
+            if self.y < 90.0 or self.x > -90.0:
+                self.y -= 0.01
                 self.image_maps()
 
 
