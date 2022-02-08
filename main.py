@@ -1,7 +1,6 @@
 import sys
 import requests
 from PyQt5 import uic
-from PyQt5.QtCore import QPropertyAnimation, QPoint
 from PyQt5.QtCore import Qt
 from PIL.ImageQt import QImage
 from PyQt5.QtGui import QPixmap
