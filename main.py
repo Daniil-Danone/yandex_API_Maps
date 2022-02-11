@@ -1,38 +1,67 @@
+import os
 import sys
 import requests
 from PyQt5 import uic
 from PyQt5.QtCore import Qt
+from dotenv import load_dotenv
 from PIL.ImageQt import QImage
 from PyQt5.QtGui import QPixmap, QIcon
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
 
+path = os.path.join(os.path.dirname(__file__), '.env')
+
+if os.path.exists(path):
+    load_dotenv(path)
+
+    API_ID = os.environ.get('API_COMPANYS')
+
+
 class MapWindow(QMainWindow):
     def __init__(self):
         super(MapWindow, self).__init__()
-
-        self.setWindowTitle('Карта')
         uic.loadUi('main.ui', self)
+
+#  инициализация окна
+
+        self.setWindowIcon(QIcon('media/google_maps_128px.png'))
+        self.setWindowTitle(f'Многофункциональная карта Земли [650x450] ®Danone & Авокато')
         self.setFixedSize(650, 450)
 
-        self.layers_icon.setPixmap(QPixmap('media/layers_38px.png'))
-        self.menu_icon.setPixmap(QPixmap('media/menu_32px.png'))
-
+#  функции кнопок и оформление
+        self.layers_icon.setPixmap(QPixmap('media/layers.png'))
         self.layers_butt.clicked.connect(self.layers_change)
+
+        self.search_butt.setIcon(QIcon('media/search_20px.png'))
+        self.search_butt.clicked.connect(self.search)
+        self.search_field.returnPressed.connect(self.search_butt.click)
+
+        self.clear_butt.setIcon(QIcon('media/delete_20px.png'))
+        self.clear_butt.clicked.connect(self.clear)
+
+        self.menu_butt.setIcon(QIcon('media/menu_32px.png'))
         self.menu_butt.clicked.connect(self.menu_show)
-        self.search_field.clearFocus()
+
+#  переменные
 
         self.layer = 'map'
         self.spn = 0.01
         self.x = 73.368221
         self.y = 54.989347
-        self.menu_x = self.menuBox.x()
+        self.mark = False
+
+        self.map.setFocus(True)
 
         self.image_maps()
 
     def image_maps(self):
-        map_request = f'https://static-maps.yandex.ru/1.x/?ll={self.x},{self.y}' \
-                      f'&spn={self.spn},{self.spn}&size=650,450&l={self.layer}'
+        if self.mark is True:
+            map_request = f'https://static-maps.yandex.ru/1.x/?pt={self.x},{self.y},pm2rdm&size=650,450&l={self.layer}' \
+                          f'&spn={self.spn},{self.spn}'
+        else:
+            map_request = f'https://static-maps.yandex.ru/1.x/?ll={self.x},{self.y}' \
+                          f'&spn={self.spn},{self.spn}&size=650,450&l={self.layer}'
+
         response = requests.get(map_request)
         print(self.spn)
 
@@ -47,6 +76,31 @@ class MapWindow(QMainWindow):
             self.map.setPixmap(pixmap)
             response.close()
 
+    def search(self):
+        if self.search_field.text() is not None:
+            response_text = self.search_field.text()
+            request = f'https://search-maps.yandex.ru/v1/?apikey={API_ID}&text={response_text}&lang=ru_RU&format=json'
+            response = requests.get(request)
+            if response:
+                data = response.json()
+
+                coordinates = data['features'][0]['geometry']['coordinates']
+                self.spn = 0.0025
+                self.x = coordinates[0]
+                self.y = coordinates[1]
+                self.mark = True
+                self.image_maps()
+                response.close()
+
+            else:
+                print("Ошибка выполнения запроса:")
+                print('fff')
+                print(response)
+                print("Http статус:", response.status_code, "(", response.reason, ")")
+
+    def clear(self):
+        self.search_field.clear()
+
     def layers_change(self):
         if self.layer == 'map':
             self.layer = 'sat'
@@ -58,9 +112,8 @@ class MapWindow(QMainWindow):
         self.map.setFocus(True)
 
     def menu_show(self):
-        self.menu_x = self.menuBox.x()
-        if self.menu_x == -250:
-            self.menuBox.move(10, 50)
+        if self.menuBox.x() == -250:
+            self.menuBox.move(10, 40)
         else:
             self.menuBox.move(-250, 50)
 

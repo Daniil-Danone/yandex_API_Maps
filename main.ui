@@ -50,7 +50,7 @@ border-color: color;
 background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="title">
-     <string>Меню объекта</string>
+     <string/>
     </property>
     <widget class="QLabel" name="name">
      <property name="geometry">
@@ -137,9 +137,9 @@ background-color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>45</x>
-      <y>10</y>
-      <width>510</width>
-      <height>25</height>
+      <y>9</y>
+      <width>595</width>
+      <height>26</height>
      </rect>
     </property>
     <property name="mouseTracking">
@@ -164,22 +164,22 @@ border-color: black;</string>
      <number>0</number>
     </property>
     <property name="alignment">
-     <set>Qt::AlignCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="placeholderText">
-     <string>Введите запрос...</string>
+     <string>  Введите запрос...</string>
     </property>
     <property name="clearButtonEnabled">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="layers_butt">
     <property name="geometry">
      <rect>
-      <x>600</x>
+      <x>610</x>
       <y>40</y>
-      <width>40</width>
-      <height>40</height>
+      <width>30</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="cursor">
@@ -197,10 +197,10 @@ border-radius: 7px;
    <widget class="QLabel" name="layers_icon">
     <property name="geometry">
      <rect>
-      <x>600</x>
+      <x>610</x>
       <y>40</y>
-      <width>40</width>
-      <height>40</height>
+      <width>30</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -220,10 +220,10 @@ background-color: rgb(255, 255, 255);
    <widget class="QPushButton" name="search_butt">
     <property name="geometry">
      <rect>
-      <x>560</x>
+      <x>610</x>
       <y>10</y>
-      <width>81</width>
-      <height>25</height>
+      <width>24</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="cursor">
@@ -233,45 +233,24 @@ background-color: rgb(255, 255, 255);
      <string notr="true">border-style: outset;
 border-color: black;
 border-radius: 6px;
-border-width: 1px;
-background-color: rgb(255, 255, 255);
-
-
+background-color: rgba(255, 255, 255, 0);
 </string>
     </property>
     <property name="text">
-     <string>Искать</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="menu_butt">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
+      <y>9</y>
       <width>30</width>
-      <height>25</height>
+      <height>26</height>
      </rect>
     </property>
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-style: outset;
-border-radius: 6px;
-</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="menu_icon">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>30</width>
-      <height>25</height>
-     </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">border-style: outset;
@@ -286,8 +265,53 @@ background-color: rgb(255, 255, 255);
     <property name="text">
      <string/>
     </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
+   </widget>
+   <widget class="QPushButton" name="clear_butt">
+    <property name="geometry">
+     <rect>
+      <x>585</x>
+      <y>10</y>
+      <width>24</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-style: outset;
+border-color: black;
+border-radius: 6px;
+background-color: rgba(255, 255, 255, 0);
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QSlider" name="verticalSlider">
+    <property name="geometry">
+     <rect>
+      <x>618</x>
+      <y>80</y>
+      <width>16</width>
+      <height>341</height>
+     </rect>
+    </property>
+    <property name="sliderPosition">
+     <number>50</number>
+    </property>
+    <property name="tracking">
+     <bool>true</bool>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+    <property name="tickPosition">
+     <enum>QSlider::TicksAbove</enum>
+    </property>
+    <property name="tickInterval">
+     <number>10</number>
     </property>
    </widget>
    <zorder>map</zorder>
@@ -296,8 +320,9 @@ background-color: rgb(255, 255, 255);
    <zorder>layers_icon</zorder>
    <zorder>layers_butt</zorder>
    <zorder>search_butt</zorder>
-   <zorder>menu_icon</zorder>
    <zorder>menu_butt</zorder>
+   <zorder>clear_butt</zorder>
+   <zorder>verticalSlider</zorder>
   </widget>
  </widget>
  <resources/>
