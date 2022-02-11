@@ -105,6 +105,8 @@ class MapWindow(QMainWindow):
 
     def clear(self):
         self.search_field.clear()
+        self.mark = False
+        self.image_maps()
 
     def layers_change(self):
         if self.layer == 'map':
