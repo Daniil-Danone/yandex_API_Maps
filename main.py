@@ -48,6 +48,8 @@ class MapWindow(QMainWindow):
         self.spn = 0.01
         self.x = 73.368221
         self.y = 54.989347
+        self.search_x = None
+        self.search_y = None
         self.mark = False
 
         self.map.setFocus(True)
@@ -56,8 +58,9 @@ class MapWindow(QMainWindow):
 
     def image_maps(self):
         if self.mark is True:
-            map_request = f'https://static-maps.yandex.ru/1.x/?pt={self.x},{self.y},pm2rdm&size=650,450&l={self.layer}' \
-                          f'&spn={self.spn},{self.spn}'
+            map_request = f'https://static-maps.yandex.ru/1.x/?ll={self.x},{self.y}' \
+                          f'&pt={self.search_x},{self.search_y},' \
+                          f'pm2rdm&size=650,450&l={self.layer}&spn={self.spn},{self.spn}'
         else:
             map_request = f'https://static-maps.yandex.ru/1.x/?ll={self.x},{self.y}' \
                           f'&spn={self.spn},{self.spn}&size=650,450&l={self.layer}'
@@ -86,7 +89,9 @@ class MapWindow(QMainWindow):
 
                 coordinates = data['features'][0]['geometry']['coordinates']
                 self.spn = 0.0025
+                self.search_x = coordinates[0]
                 self.x = coordinates[0]
+                self.search_y = coordinates[1]
                 self.y = coordinates[1]
                 self.mark = True
                 self.image_maps()
