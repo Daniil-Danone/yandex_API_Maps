@@ -136,17 +136,152 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLineEdit" name="search_field">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>45</x>
       <y>10</y>
-      <width>631</width>
+      <width>510</width>
       <height>25</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">border-style: outset;
 border-radius: 6px;
 border-width: 1px;
 border-color: black;</string>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="frame">
+     <bool>false</bool>
+    </property>
+    <property name="cursorPosition">
+     <number>0</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="placeholderText">
+     <string>Введите запрос...</string>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="layers_butt">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>40</y>
+      <width>40</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-style: outset;
+border-radius: 7px;
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="layers_icon">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>40</y>
+      <width>40</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-style: outset;
+border-color: black;
+border-radius: 7px;
+border-width: 1px;
+background-color: rgb(255, 255, 255);
+
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="search_butt">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>10</y>
+      <width>81</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-style: outset;
+border-color: black;
+border-radius: 6px;
+border-width: 1px;
+background-color: rgb(255, 255, 255);
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>Искать</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="menu_butt">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>30</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-style: outset;
+border-radius: 6px;
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="menu_icon">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>30</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-style: outset;
+border-color: black;
+border-radius: 6px;
+border-width: 1px;
+background-color: rgb(255, 255, 255);
+
+
+</string>
     </property>
     <property name="text">
      <string/>
@@ -158,6 +293,11 @@ border-color: black;</string>
    <zorder>map</zorder>
    <zorder>search_field</zorder>
    <zorder>menuBox</zorder>
+   <zorder>layers_icon</zorder>
+   <zorder>layers_butt</zorder>
+   <zorder>search_butt</zorder>
+   <zorder>menu_icon</zorder>
+   <zorder>menu_butt</zorder>
   </widget>
  </widget>
  <resources/>
